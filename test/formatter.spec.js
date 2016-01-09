@@ -69,6 +69,26 @@ describe('formatter', function() {
         expect(chalk.stripColor(result)).to.equal('  11:11:11:111 ERROR error message (/Users/Mark/projects/palin/test/test.js:9)');
     });
 
+    // Test for derrived errors - see https://github.com/MarkHerhold/palin/issues/1
+    it('should format a derived "error" message', function() {
+        const date = new Date(2000, 11, 11, 11, 11, 11, 111);
+        const message = 'error message';
+
+        function DerivedError() {
+            Error.call(this);
+        }
+        DerivedError.prototype = new Error();
+        DerivedError.prototype.constructor = DerivedError;
+
+        const aggObj = {
+            file: '/Users/Mark/projects/palin/test/test.js',
+            line: '9'
+        };
+
+        const result = palin({}, 'error', date, [message, new DerivedError(), aggObj]);
+        expect(chalk.stripColor(result)).to.contain('  11:11:11:111 ERROR error message (/Users/Mark/projects/palin/test/test.js:9)\n    →  [Error]\n    →  Error\n    →      at');
+    });
+
     describe('timestamp option', function() {
         it('should not include a timestamp with the timestamp option set to false', function() {
             const message = 'hello';

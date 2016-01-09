@@ -127,7 +127,7 @@ var formatter = function formatter(options, severity, date, elems) {
                 // string is obviously the title
                 build += chalk.blue(element);
                 elementConsumed = true;
-            } else if (check.error(element)) {
+            } else if (check.builtIn(element, Error)) {
                 // title is the error text representation
                 build += chalk.blue(element.message || '[no message]');
                 // also store error stacktrace in the aggregate object
@@ -150,7 +150,7 @@ var formatter = function formatter(options, severity, date, elems) {
         }
 
         // add an error if it exists in the array
-        if (check.error(element)) {
+        if (check.builtIn(element, Error)) {
             errors.push(element);
         }
 
@@ -165,7 +165,7 @@ var formatter = function formatter(options, severity, date, elems) {
 
     // iterate through the top-level object keys looking for Errors as well
     for (let o of Object.keys(aggObj)) {
-        if (check.error(o)) {
+        if (check.builtIn(o, Error)) {
             errors.push(o);
         }
     }
