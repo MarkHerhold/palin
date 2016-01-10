@@ -1,6 +1,8 @@
 # Palin
 > Palin is a beautiful [Bristol](https://github.com/TomFrost/Bristol) formatter for development logging.
 
+[![Circle CI](https://circleci.com/gh/MarkHerhold/palin.svg?style=svg)](https://circleci.com/gh/MarkHerhold/palin)
+
 ## Preview
 ![preview](preview.png)
 
