@@ -149,9 +149,11 @@ var formatter = function formatter(options, severity, date, elems) {
             }
         }
 
-        // add an error if it exists in the array
+        // add the element to the errors array if it's an error
         if (check.builtIn(element, Error)) {
             errors.push(element);
+            // the error will be concatinated later so continue to the next element
+            continue;
         }
 
         let objString = '\n' + util.inspect(element, { colors: true });
