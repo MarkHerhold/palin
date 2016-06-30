@@ -1,3 +1,5 @@
 test/
 benchmark.js
 preview.png
+.travis.yml
+.eslintrc.yml
