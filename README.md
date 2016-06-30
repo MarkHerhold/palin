@@ -27,8 +27,6 @@ log.error('oh, snap!', err1, err2, [ 'thing', 123 ])
 Produces:
 ```
 23:00:46:035 ERROR oh, snap! (test/integration.js:16)
-  →  [Error: Error 1]
-  →  [Error: Error 2]
   →  { '0': 'thing', '1': 123 }
   →  Error: Error 1
   →      at Object.<anonymous> (/Users/Mark/projects/palin/test/integration.js:14:12)

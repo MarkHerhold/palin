@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
+    "bristol": "0.3.3",
     "chai": "^3.4.1",
     "eslint": "^1.10.3",
     "mocha": "^2.3.4"

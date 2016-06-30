@@ -86,7 +86,7 @@ describe('formatter', function() {
         };
 
         const result = palin({}, 'error', date, [message, new DerivedError(), aggObj]);
-        expect(chalk.stripColor(result)).to.contain('  11:11:11:111 ERROR error message (/Users/Mark/projects/palin/test/test.js:9)\n    →  [Error]\n    →  Error\n    →      at');
+        expect(chalk.stripColor(result)).to.contain('  11:11:11:111 ERROR error message (/Users/Mark/projects/palin/test/test.js:9)\n    →  Error\n    →      at');
     });
 
     describe('timestamp option', function() {
