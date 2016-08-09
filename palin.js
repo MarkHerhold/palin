@@ -31,8 +31,15 @@ function getTimestampString(date) {
     minute = minute.slice(minute.length - 2);
     var second = '0' + date.getSeconds();
     second = second.slice(second.length - 2);
-    var ms = '0' + date.getMilliseconds();
-    ms = ms.slice(ms.length - 3);
+    var ms = '' + date.getMilliseconds();
+
+    // https://github.com/MarkHerhold/palin/issues/6
+    // this is faster than using an actual left-pad algorithm
+    if (ms.length === 1) {
+        ms = '00' + ms;
+    } else if (ms.length === 2) {
+        ms = '0' + ms;
+    } // no modifications for 3 or more digits
 
     return chalk.dim(`${hour}:${minute}:${second}:${ms}`);
 }
@@ -181,3 +188,5 @@ var formatter = function formatter(options, severity, date, elems) {
 };
 
 module.exports = formatter;
+// furhter exports for testing
+formatter._getTimestampString = getTimestampString;
