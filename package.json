@@ -1,6 +1,6 @@
 {
   "name": "palin",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A beautiful Bristol formatter for development logging",
   "main": "palin.js",
   "engines": {
