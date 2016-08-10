@@ -188,5 +188,5 @@ var formatter = function formatter(options, severity, date, elems) {
 };
 
 module.exports = formatter;
-// furhter exports for testing
+// further exports for testing
 formatter._getTimestampString = getTimestampString;
