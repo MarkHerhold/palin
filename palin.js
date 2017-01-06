@@ -86,8 +86,7 @@ var formatter = function formatter(options, severity, date, elems) {
     OPTIONS
     */
     const indent = options.indent || defaultIndent;
-    const objectDepth = check.undefined(options.objectDepth) ?
-        util.inspect.defaultOptions.depth : options.objectDepth;
+    const objectDepth = options.objectDepth;
     const timestamp = (function () {
         if (check.function(options.timestamp)) {
             return options.timestamp; // user-provided timestamp generating function
