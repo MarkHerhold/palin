@@ -86,6 +86,8 @@ var formatter = function formatter(options, severity, date, elems) {
     OPTIONS
     */
     const indent = options.indent || defaultIndent;
+    const objectDepth = check.undefined(options.objectDepth) ?
+        util.inspect.defaultOptions.depth : options.objectDepth;
     const timestamp = (function () {
         if (check.function(options.timestamp)) {
             return options.timestamp; // user-provided timestamp generating function
@@ -163,12 +165,12 @@ var formatter = function formatter(options, severity, date, elems) {
             continue;
         }
 
-        let objString = '\n' + util.inspect(element, { colors: true });
+        let objString = '\n' + util.inspect(element, { colors: true, depth: objectDepth });
         build += objString.replace(/\n/g, indent);
     }
 
     if (Object.keys(aggObj).length > 0) {
-        let objString = '\n' + util.inspect(aggObj, { colors: true });
+        let objString = '\n' + util.inspect(aggObj, { colors: true, depth: objectDepth });
         build += objString.replace(/\n/g, indent);
     }
 

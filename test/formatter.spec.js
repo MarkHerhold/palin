@@ -136,4 +136,23 @@ describe('formatter', function() {
             expect(chalk.stripColor(result)).to.equal('  11:11:11:111 LOG hello (test/test.js:9)');
         });
     });
+
+    describe('objectDepth option', function () {
+        it('should show objects of specified depth', function () {
+            const date = new Date(2000, 11, 11, 11, 11, 11, 111);
+            const message = 'hello';
+            const options = {
+                objectDepth: 4
+            };
+            const aggObj = {
+                file: '/Users/Mark/projects/palin/test/test.js',
+                line: '9',
+                test: {
+                    object: { is: { deep: { show: 'me' } } },
+                    another: { object: { is: { hidden: { because: { it: { is: { deeper: { hidden: true } } } } } } } } }
+            };
+            const result = palin(options, 'log', date, [message, aggObj]);
+            expect(chalk.stripColor(result)).to.equal('  11:11:11:111 LOG hello (/Users/Mark/projects/palin/test/test.js:9)\n    →  { test: \n    →     { object: { is: { deep: { show: \'me\' } } },\n    →       another: { object: { is: { hidden: [Object] } } } } }');
+        });
+    });
 });
