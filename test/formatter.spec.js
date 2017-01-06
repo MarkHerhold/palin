@@ -122,16 +122,18 @@ describe('formatter', function() {
     });
 
     describe('rootFolderName option', function () {
-        const date = new Date(2000, 11, 11, 11, 11, 11, 111);
-        const message = 'hello';
-        const options = {
-            rootFolderName: 'palin'
-        };
-        const aggObj = {
-            file: '/Users/Mark/projects/palin/test/test.js',
-            line: '9'
-        };
-        const result = palin(options, 'log', date, [message, aggObj]);
-        expect(chalk.stripColor(result)).to.equal('  11:11:11:111 LOG hello (test/test.js:9)');
+        it('should strip the root folder from the message', function () {
+            const date = new Date(2000, 11, 11, 11, 11, 11, 111);
+            const message = 'hello';
+            const options = {
+                rootFolderName: 'palin'
+            };
+            const aggObj = {
+                file: '/Users/Mark/projects/palin/test/test.js',
+                line: '9'
+            };
+            const result = palin(options, 'log', date, [message, aggObj]);
+            expect(chalk.stripColor(result)).to.equal('  11:11:11:111 LOG hello (test/test.js:9)');
+        });
     });
 });
