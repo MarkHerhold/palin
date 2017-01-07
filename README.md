@@ -110,6 +110,17 @@ log
   });
 ```
 
+#### Object Depth
+Palin formats objects using the built-in `require('util').inspect()`. Use the `objectDepth` option to increase depth of each object printed.
+
+```js
+log
+  .addTarget('console')
+  .withFormatter(palin, {
+    objectDepth: 5 // instead of inspect's default level ( usually 2 )
+  });
+```
+
 ## Other features
 Palin supports the concept of a "scope", which is a way of labeling groups of log messages. To use this, simply add an object with the key `scope` to the list of arguments. The color of the scope variable will be maintained for the lifetime of the the Bristol logger.
 
