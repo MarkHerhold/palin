@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 var palin = require('./../palin');
-var chalk = require('chalk');
+var stripAnsi = require('strip-ansi');
 
 describe('formatter', function() {
     it('should format a single "trace" message', function() {
@@ -11,7 +11,7 @@ describe('formatter', function() {
             line: '9'
         };
         const result = palin({}, 'trace', date, [message, aggObj]);
-        expect(chalk.stripColor(result)).to.equal('  11:11:11:111 TRACE trace message (/Users/Mark/projects/palin/test/test.js:9)');
+        expect(stripAnsi(result)).to.equal('  11:11:11:111 TRACE trace message (/Users/Mark/projects/palin/test/test.js:9)');
     });
 
     it('should format a single "debug" message', function() {
@@ -22,7 +22,7 @@ describe('formatter', function() {
             line: '9'
         };
         const result = palin({}, 'debug', date, [message, aggObj]);
-        expect(chalk.stripColor(result)).to.equal('  11:11:11:111 DEBUG debug message (/Users/Mark/projects/palin/test/test.js:9)');
+        expect(stripAnsi(result)).to.equal('  11:11:11:111 DEBUG debug message (/Users/Mark/projects/palin/test/test.js:9)');
     });
 
     it('should format a single "info" message', function() {
@@ -33,7 +33,7 @@ describe('formatter', function() {
             line: '9'
         };
         const result = palin({}, 'info', date, [message, aggObj]);
-        expect(chalk.stripColor(result)).to.equal('  11:11:11:111 INFO info message (/Users/Mark/projects/palin/test/test.js:9)');
+        expect(stripAnsi(result)).to.equal('  11:11:11:111 INFO info message (/Users/Mark/projects/palin/test/test.js:9)');
     });
 
     it('should format a single "log" message', function() {
@@ -44,7 +44,7 @@ describe('formatter', function() {
             line: '9'
         };
         const result = palin({}, 'log', date, [message, aggObj]);
-        expect(chalk.stripColor(result)).to.equal('  11:11:11:111 LOG log message (/Users/Mark/projects/palin/test/test.js:9)');
+        expect(stripAnsi(result)).to.equal('  11:11:11:111 LOG log message (/Users/Mark/projects/palin/test/test.js:9)');
     });
 
     it('should format a single "warning" message', function() {
@@ -55,7 +55,7 @@ describe('formatter', function() {
             line: '9'
         };
         const result = palin({}, 'warn', date, [message, aggObj]);
-        expect(chalk.stripColor(result)).to.equal('  11:11:11:111 WARN warning message (/Users/Mark/projects/palin/test/test.js:9)');
+        expect(stripAnsi(result)).to.equal('  11:11:11:111 WARN warning message (/Users/Mark/projects/palin/test/test.js:9)');
     });
 
     it('should format a single "error" message', function() {
@@ -66,7 +66,7 @@ describe('formatter', function() {
             line: '9'
         };
         const result = palin({}, 'error', date, [message, aggObj]);
-        expect(chalk.stripColor(result)).to.equal('  11:11:11:111 ERROR error message (/Users/Mark/projects/palin/test/test.js:9)');
+        expect(stripAnsi(result)).to.equal('  11:11:11:111 ERROR error message (/Users/Mark/projects/palin/test/test.js:9)');
     });
 
     // Test for derrived errors - see https://github.com/MarkHerhold/palin/issues/1
@@ -86,7 +86,7 @@ describe('formatter', function() {
         };
 
         const result = palin({}, 'error', date, [message, new DerivedError(), aggObj]);
-        expect(chalk.stripColor(result)).to.contain('  11:11:11:111 ERROR error message (/Users/Mark/projects/palin/test/test.js:9)\n    →  Error\n    →      at');
+        expect(stripAnsi(result)).to.contain('  11:11:11:111 ERROR error message (/Users/Mark/projects/palin/test/test.js:9)\n    →  Error\n    →      at');
     });
 
     describe('timestamp option', function() {
@@ -100,7 +100,7 @@ describe('formatter', function() {
                 line: '9'
             };
             const result = palin(options, 'log', new Date(), [message, aggObj]);
-            expect(chalk.stripColor(result)).to.equal('  LOG hello (/Users/Mark/projects/palin/test/test.js:9)');
+            expect(stripAnsi(result)).to.equal('  LOG hello (/Users/Mark/projects/palin/test/test.js:9)');
         });
 
         it('should include a timestamp with a custom timestamp function', function() {
@@ -117,7 +117,7 @@ describe('formatter', function() {
                 line: '9'
             };
             const result = palin(options, 'log', new Date(), [message, aggObj]);
-            expect(chalk.stripColor(result)).to.equal('  sometime:today LOG hello (/Users/Mark/projects/palin/test/test.js:9)');
+            expect(stripAnsi(result)).to.equal('  sometime:today LOG hello (/Users/Mark/projects/palin/test/test.js:9)');
         });
     });
 
@@ -133,7 +133,7 @@ describe('formatter', function() {
                 line: '9'
             };
             const result = palin(options, 'log', date, [message, aggObj]);
-            expect(chalk.stripColor(result)).to.equal('  11:11:11:111 LOG hello (test/test.js:9)');
+            expect(stripAnsi(result)).to.equal('  11:11:11:111 LOG hello (test/test.js:9)');
         });
     });
 
@@ -152,7 +152,7 @@ describe('formatter', function() {
                     another: { object: { is: { hidden: { because: { it: { is: { deeper: { hidden: true } } } } } } } } }
             };
             const result = palin(options, 'log', date, [message, aggObj]);
-            expect(chalk.stripColor(result)).to.equal('  11:11:11:111 LOG hello (/Users/Mark/projects/palin/test/test.js:9)\n    →  { test: \n    →     { object: { is: { deep: { show: \'me\' } } },\n    →       another: { object: { is: { hidden: [Object] } } } } }');
+            expect(stripAnsi(result)).to.equal('  11:11:11:111 LOG hello (/Users/Mark/projects/palin/test/test.js:9)\n    →  { test: \n    →     { object: { is: { deep: { show: \'me\' } } },\n    →       another: { object: { is: { hidden: [Object] } } } } }');
         });
     });
 });
