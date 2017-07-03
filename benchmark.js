@@ -12,12 +12,12 @@ const aggObj = {
 };
 
 suite
-.add('formatter', function() {
-    palin({}, 'trace', date, [message, aggObj]);
-})
-.on('cycle', function(event) {
+    .add('formatter', function() {
+        palin({}, 'trace', date, [message, aggObj]);
+    })
+    .on('cycle', function(event) {
     /*eslint no-console: 0*/
-    console.log(String(event.target));
-})
+        console.log(String(event.target));
+    })
 // run async
-.run({ 'async': true });
+    .run({ 'async': true });
