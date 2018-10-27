@@ -170,4 +170,20 @@ describe('formatter', function() {
             }
         });
     });
+
+    describe('disableColor option', function () {
+        it('should not output ASCII color codes', function () {
+            const date = new Date(2000, 11, 11, 11, 11, 11, 111);
+            const message = 'hello';
+            const options = {
+                disableColor: true
+            };
+            const aggObj = {
+                file: '/Users/Mark/projects/palin/test/test.js',
+                line: '9'
+            };
+            const result = palin(options, 'log', date, [message, aggObj]);
+            expect(result).to.equal('  11:11:11:111 LOG hello (/Users/Mark/projects/palin/test/test.js:9)');
+        });
+    });
 });
