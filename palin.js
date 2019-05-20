@@ -147,8 +147,8 @@ var formatter = function formatter(options, severity, date, elems) {
             // add on the file and line number, which always go after the title, inline
             if (aggObj.file && aggObj.line) {
                 if(displayCodePlace){
-	                aggObj.file = truncFilename(aggObj.file, rootFolderName);
-	                build += chalk.dim(` (${aggObj.file}:${aggObj.line})`);
+                    aggObj.file = truncFilename(aggObj.file, rootFolderName);
+                    build += chalk.dim(` (${aggObj.file}:${aggObj.line})`);
                 }
                 delete aggObj.file;
                 delete aggObj.line;
