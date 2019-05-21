@@ -1,8 +1,8 @@
 'use strict';
 
-var util = require('util'); // node's util
-var chalk = require('chalk');
-var check = require('check-types');
+const util = require('util'); // node's util
+const chalk = require('chalk');
+const check = require('check-types');
 
 // shortens the file name to exclude any path before the project folder name
 // @param path: file path string. e.g. /home/mark/myproj/run.js
@@ -80,7 +80,7 @@ function getScopeString(scope) {
 const defaultIndent = chalk.gray('\n    →  ');
 
 // the formatter to export
-var formatter = function formatter(options, severity, date, elems) {
+const formatter = function formatter(options, severity, date, elems) {
 
     /*
     OPTIONS
@@ -104,10 +104,10 @@ var formatter = function formatter(options, severity, date, elems) {
     */
 
     // the last element is an aggregate object of all of the additional passed in elements
-    var aggObj = elems[elems.length - 1];
+    const aggObj = elems[elems.length - 1];
 
     // initial log string
-    var build = ' ';
+    let build = ' ';
 
     // add the date
     if (timestamp !== false) {
@@ -124,10 +124,10 @@ var formatter = function formatter(options, severity, date, elems) {
     }
 
     // errors are a special case that we absolutely need to keep track of and log the entire stack
-    var errors = [];
+    const errors = [];
 
     for (let i = 0; i < elems.length - 1; i++) { // iterate through all elements in the array except the last (obj map of options)
-        let element = elems[i];
+        const element = elems[i];
 
         // Attempt to determine an appropriate title given the first element
         if (i === 0) {
@@ -167,24 +167,24 @@ var formatter = function formatter(options, severity, date, elems) {
             continue;
         }
 
-        let objString = '\n' + util.inspect(element, { colors: true, depth: objectDepth });
+        const objString = '\n' + util.inspect(element, { colors: true, depth: objectDepth, compact: true });
         build += objString.replace(/\n/g, indent);
     }
 
     if (Object.keys(aggObj).length > 0) {
-        let objString = '\n' + util.inspect(aggObj, { colors: true, depth: objectDepth });
+        const objString = '\n' + util.inspect(aggObj, { colors: true, depth: objectDepth, compact: true });
         build += objString.replace(/\n/g, indent);
     }
 
     // iterate through the top-level object keys looking for Errors as well
-    for (let o of Object.keys(aggObj)) {
+    for (const o of Object.keys(aggObj)) {
         if (check.instance(o, Error)) {
             errors.push(o);
         }
     }
 
     // iterate through all the Error objects and print the stacks
-    for (let e of errors) {
+    for (const e of errors) {
         build += indent + e.stack.replace(/\n/g, indent);
     }
 

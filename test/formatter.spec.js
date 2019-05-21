@@ -156,17 +156,17 @@ describe('formatter', function() {
 
             // split each result into each line and trim off the space at the end
             // in Node.js < 10, there is a space after object keys. In Node.js 10+ there is not
-            const cleanedResult = stripAnsi(result).split('\n').map(line => line.trimRight);
+            const cleanedResult = stripAnsi(result).split('\n').map(line => line.trimRight());
             const expected =
 `  11:11:11:111 LOG hello (/Users/Mark/projects/palin/test/test.js:9)
     →  { test:
     →     { object: { is: { deep: { show: 'me' } } },
-    →       another: { object: { is: { hidden: [Object] } } } } }`.split('\n').map(line => line.trimRight);
+    →       another: { object: { is: { hidden: [Object] } } } } }`.split('\n').map(line => line.trimRight());
 
             expect(cleanedResult.length).to.equal(expected.length);
             // check each line
             for (let i = 0; i < cleanedResult.length; i++) {
-                expect(cleanedResult[0]).to.equal(expected[0]);
+                expect(cleanedResult[i]).to.equal(expected[i]);
             }
         });
     });
