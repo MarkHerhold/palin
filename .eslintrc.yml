@@ -10,6 +10,8 @@ rules:
   semi:
     - 2
     - always
+  prefer-const:
+    - 2
 env:
   node: true
   es6: true
