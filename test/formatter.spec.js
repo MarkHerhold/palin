@@ -166,7 +166,7 @@ describe('formatter', function() {
             expect(cleanedResult.length).to.equal(expected.length);
             // check each line
             for (let i = 0; i < cleanedResult.length; i++) {
-                expect(cleanedResult[0]).to.equal(expected[0]);
+                expect(cleanedResult[i]).to.equal(expected[i]);
             }
         });
     });
