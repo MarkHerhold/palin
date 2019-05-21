@@ -87,7 +87,7 @@ const formatter = function formatter(options, severity, date, elems) {
     */
     const indent = options.indent || defaultIndent;
     const objectDepth = options.objectDepth;
-    const displayCodePlace = options.hasOwnProperty('displayCodePlace')? options.displayCodePlace : true;
+    const source = options.hasOwnProperty('source') ? options.source : true;
     const timestamp = (function () {
         if (check.function(options.timestamp)) {
             return options.timestamp; // user-provided timestamp generating function
@@ -146,7 +146,7 @@ const formatter = function formatter(options, severity, date, elems) {
 
             // add on the file and line number, which always go after the title, inline
             if (aggObj.file && aggObj.line) {
-                if(displayCodePlace){
+                if (source){
                     aggObj.file = truncFilename(aggObj.file, rootFolderName);
                     build += chalk.dim(` (${aggObj.file}:${aggObj.line})`);
                 }
