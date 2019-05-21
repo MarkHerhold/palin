@@ -164,12 +164,12 @@ const formatter = function formatter(options, severity, date, elems) {
             continue;
         }
 
-        const objString = '\n' + util.inspect(element, { colors: true, depth: objectDepth });
+        const objString = '\n' + util.inspect(element, { colors: true, depth: objectDepth, compact: true });
         build += objString.replace(/\n/g, indent);
     }
 
     if (Object.keys(aggObj).length > 0) {
-        const objString = '\n' + util.inspect(aggObj, { colors: true, depth: objectDepth });
+        const objString = '\n' + util.inspect(aggObj, { colors: true, depth: objectDepth, compact: true });
         build += objString.replace(/\n/g, indent);
     }
 
