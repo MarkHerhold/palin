@@ -122,7 +122,7 @@ log
 ```
 
 #### Source
-Hide the source line/file of errors.
+Hide the source line/file of messages. Useful for logging purely informational messages.
 
 ```js
 log
