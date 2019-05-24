@@ -12,8 +12,8 @@ Install with `npm install palin --save`
 Please remember to star ⭐️ this repo!
 
 ```js
-var log = require('bristol');
-var palin = require('palin');
+const log = require('bristol');
+const palin = require('palin');
 log.addTarget('console').withFormatter(palin);
 
 log.info("We're up and running!");
@@ -21,8 +21,8 @@ log.info("We're up and running!");
 
 One of Palin's main features is the ability to log whatever you throw at it. For example, you may want to log two Errors and other associated data.
 ```js
-var err1 = new Error('Error 1');
-var err2 = new Error('Error 2');
+const err1 = new Error('Error 1');
+const err2 = new Error('Error 2');
 log.error('oh, snap!', err1, err2, [ 'thing', 123 ])
 ```
 Produces:
