@@ -9,6 +9,8 @@
 ## Use
 Install with `npm install palin --save`
 
+Please remember to star ⭐️ this repo!
+
 ```js
 var log = require('bristol');
 var palin = require('palin');
