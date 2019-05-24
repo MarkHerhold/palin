@@ -123,6 +123,17 @@ log
   });
 ```
 
+#### Source
+Hide the source line/file of messages. Useful for logging purely informational messages.
+
+```js
+log
+  .addTarget('console')
+  .withFormatter(palin, {
+    souce: false
+  });
+```
+
 ## Other features
 Palin supports the concept of a "scope", which is a way of labeling groups of log messages. To use this, simply add an object with the key `scope` to the list of arguments. The color of the scope variable will be maintained for the lifetime of the the Bristol logger.
 

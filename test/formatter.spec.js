@@ -170,4 +170,36 @@ describe('formatter', function() {
             }
         });
     });
+
+    describe('source option', function () {
+        it('should hide the source line/file', function () {
+            const date = new Date(2000, 11, 11, 11, 11, 11, 111);
+            const message = 'hello';
+            const options = {
+                source: false
+            };
+            const aggObj = {
+                file: '/Users/Mark/projects/palin/test/test.js',
+                line: '9',
+                test: {
+                    a: 'b'
+                }
+            };
+
+            const result = palin(options, 'log', date, [message, aggObj]);
+
+            // split each result into each line and trim off the space at the end
+            // in Node.js < 10, there is a space after object keys. In Node.js 10+ there is not
+            const cleanedResult = stripAnsi(result).split('\n').map(line => line.trimRight());
+            const expected =
+`  11:11:11:111 LOG hello
+    →  { test: { a: 'b' } }`.split('\n').map(line => line.trimRight());
+
+            expect(cleanedResult.length).to.equal(expected.length);
+            // check each line
+            for (let i = 0; i < cleanedResult.length; i++) {
+                expect(cleanedResult[i]).to.equal(expected[i]);
+            }
+        });
+    });
 });
